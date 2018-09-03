@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  web-vevis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=vejvis.cz
+      - GREET_NAME=vejvis
+  web-tomas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=tomas.cz
+      - GREET_NAME=tomas

@@ -1,7 +1,7 @@
-FROM ubuntu:latest
+FROM node:9.11.2
+COPY package.json package-lock.json ./
+RUN npm install
+COPY index.js .
+CMD ["node", "index.js"]
+EXPOSE 80
 
-RUN apt update && apt install -y cowsay
-
-ENTRYPOINT [ "/usr/games/cowsay" ]
-
-CMD [ "I love docker" ]
